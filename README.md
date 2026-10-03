@@ -12,9 +12,11 @@ This plugin and prompt make Claude write the way a person talks. Install one, no
 It gives you:
 
 - A hook that loads the rules from [CLAUDE.md](CLAUDE.md) at the start of every session.
-- The `plain-writing` skill: the rules plus before and after examples. Claude uses it whenever it writes prose.
+- The `plain-writing` skill: before and after examples. Claude loads it when it writes prose.
 - `/writing-style:review <files>`: lists every line that breaks a rule, with the fix. Changes nothing.
 - `/writing-style:rewrite <files>`: fixes every line of every file and reports a ledger of what changed.
+
+Claude only runs review and rewrite when you type the command, so their descriptions stay out of every session.
 
 ## The prompt
 

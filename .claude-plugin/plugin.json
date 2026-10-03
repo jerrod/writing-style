@@ -1,6 +1,6 @@
 {
   "name": "writing-style",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Makes Claude write plainly: spoken, active, no origin stories",
   "author": { "name": "Jerrod Blavos" },
   "repository": "https://github.com/jerrod/writing-style"
