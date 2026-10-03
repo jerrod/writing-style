@@ -2,9 +2,10 @@
 name: rewrite
 description: Rewrite every line of the given files so they follow the plain-writing rules, and keep a ledger of what changed. Use when asked to fix, rewrite or clean up writing.
 argument-hint: "<files, folders, globs or pasted text>"
+disable-model-invocation: true
 ---
 
-Rewrite `$ARGUMENTS` so it follows the rules in the `plain-writing` skill. If no argument is given, rewrite the files changed on the current branch.
+Rewrite `$ARGUMENTS` so it follows the "How to write" rules, using the `plain-writing` examples. If no argument is given, rewrite the files changed on the current branch.
 
 1. List every file in scope. Skip binaries, lockfiles and data files, and say which ones you skipped.
 2. Read each file line by line, top to bottom. Don't sample or skim. Prose in code counts: comments, docstrings, CLI messages, prompts and commit-message templates.

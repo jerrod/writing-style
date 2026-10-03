@@ -2,9 +2,10 @@
 name: review
 description: List every line in the given files or text that breaks the plain-writing rules, with the rule it breaks and the fix. Changes nothing. Use when asked to review or check writing.
 argument-hint: "<files, folders, globs or pasted text>"
+disable-model-invocation: true
 ---
 
-Review `$ARGUMENTS` against the rules in the `plain-writing` skill. If no argument is given, review the files changed on the current branch.
+Review `$ARGUMENTS` against the "How to write" rules, using the `plain-writing` examples. If no argument is given, review the files changed on the current branch.
 
 1. List every file in scope. Skip binaries, lockfiles and data files, and say which ones you skipped.
 2. Read each file line by line, top to bottom. Don't sample or skim. Prose in code counts: comments, docstrings, CLI messages, prompts and commit-message templates.

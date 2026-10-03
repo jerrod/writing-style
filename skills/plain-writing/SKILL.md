@@ -1,22 +1,9 @@
 ---
 name: plain-writing
-description: Rules and before/after examples for plain, spoken writing. Use whenever you write or edit prose anyone will read, including docs, READMEs, PRs, commit messages, comments, CLI messages and prompts.
+description: Before/after examples of the plain-writing rules. Use whenever you write or edit prose anyone will read, including docs, READMEs, PRs, commit messages, comments, CLI messages and prompts.
 ---
 
-Write the way a person talks. Every rule below is a test you can run on one sentence.
-
-## The rules
-
-1. **Cut mannered prose.** If you wouldn't say it out loud, don't write it. Watch for inverted word order and words people only write: absorb, revamp, calibration, position, unaided, leverage, utilize.
-2. **Cut accretion.** One idea per sentence. Don't restate the heading, repeat a list from elsewhere in the doc, or tack a second point on with "which". Don't use a colon subtitle that lists the contents.
-3. **Use active voice.** Name who does the thing. When a noun hides a verb ("confirmation of", "approval of"), turn it back into a person doing something.
-4. **No origin stories.** Delete any sentence about history, who's working on what, what's changing, due dates, who said what, where a doc came from, or why a thing exists. Cut source citations from running text. Don't reword these lines. Delete them. An anecdote ("On one project...") isn't evidence. State the lesson.
-5. **Use plain words and active verbs.** Drop jargon ("load-bearing"), shorthand the reader has to decode, double negatives, stacked modifiers, and filler like "actually", "real", "in practice" and "any" when you mean "every".
-6. **Talk to the reader.** Write "you", not "the engineer" or "the user". A list item says who does what, the way you'd say it to a teammate. It doesn't read like policy.
-7. **Write for anyone.** A doc meant for a team names no people and doesn't assume the reader's current work.
-8. **Stop when the point is made.** Cut the last sentence if it only says why, sums up, or offers more.
-
-Leave data, quotes, code identifiers and test fixtures alone.
+The rules are in the "How to write" section that loads at the start of every session. These examples show how to apply them.
 
 ## Before and after
 
