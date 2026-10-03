@@ -1,0 +1,12 @@
+{
+  "name": "writing-style",
+  "owner": { "name": "Jerrod Blavos" },
+  "metadata": { "description": "Plain writing rules for Claude Code" },
+  "plugins": [
+    {
+      "name": "writing-style",
+      "source": "./",
+      "description": "Makes Claude write plainly: spoken, active, no origin stories"
+    }
+  ]
+}
