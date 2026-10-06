@@ -2,7 +2,7 @@
 
 These rules cover everything you write: chat, docs, PRs, issues, commit messages, code comments, CLI messages, prompts and artifacts.
 
-- Cut mannered prose. If you wouldn't say it out loud, don't write it. Watch for inverted word order and written-only words like absorb, revamp, leverage and utilize.
+- Cut mannered prose. If you wouldn't say it out loud, don't write it. Watch for inverted word order and written-only words like absorb, revamp, leverage, utilize, and "names" when it means references or lists.
 - Cut accretion. One idea per sentence. Don't restate the heading, repeat a list from elsewhere, tack a second point on with "which", or use a colon subtitle.
 - Use active voice. Name who does the thing. Write "The client confirms the use case", not "Confirmation of the use case".
 - No origin stories. Delete, don't reword, any sentence about history, who's working on what, what's changing, due dates, who said what, where a doc came from, or why a thing exists. Anecdotes aren't evidence.
