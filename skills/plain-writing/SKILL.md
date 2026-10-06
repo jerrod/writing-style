@@ -14,6 +14,7 @@ The rules are in the "How to write" section that loads at the start of every ses
 | Commit no number you can't defend. | Inverted word order | Don't commit to a number you can't defend. |
 | The team lead stays accountable for the technical outcome. | Mannered | The team lead answers for the technical result. |
 | The client can absorb the change. | Mannered | The client can handle the change. |
+| Each question names the slide that raised it. | Mannered, hides who acts | Each question references the source slide. |
 | Its real output is the list of gaps in the docs, which feeds the brief and the register. | Filler and a tacked-on "which" | What you want from it is the list of gaps in the docs. Feed them into the brief and the register. |
 | Map the stack, system boundaries, model and compliance limits, volume, latency and ground truth. | Repeats the checklist below | Answer the checklist below. |
 | Follow these steps on every project, and keep each output in the repo so later steps build on earlier ones. | Restates the heading, says why | Keep each step's output in the repo. |
