@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "gates": [
+    {"name": "check", "run": "bin/check", "source": ".github/workflows/ci.yml", "verified": true},
+    {"name": "file-length", "kind": "file-length", "max": 300, "source": "fleet", "verified": true},
+    {"name": "comments-python", "run": "n=$(git diff -U0 \"origin/${FLEET_BASE_REF:-main}...HEAD\" -- '*.py' bin/check | grep -E '^\\+[[:space:]]*#' | grep -vE '^\\+[[:space:]]*#(!|[[:space:]]*(type:|noqa|pragma))' | tee /dev/stderr | wc -l); [ \"$n\" -le 3 ]", "source": "fleet", "verified": true},
+    {"name": "change-size", "run": "n=$(git diff --numstat \"origin/${FLEET_BASE_REF:-main}...HEAD\" | awk '{s+=$1} END {print s+0}'); echo \"added: $n\"; [ \"$n\" -le 999 ]", "source": "fleet", "verified": true}
+  ],
+  "tools": [
+    {"name": "python3", "run": "python3 --version", "brew": "python", "source": "bin/check"}
+  ],
+  "sources": [
+    {"path": ".github/workflows/ci.yml", "sha": "cbe55504897cd4dc9cf8c9e52012d20a8ee08c55"},
+    {"path": "bin/check", "sha": "4ff426a1106851d187442b3e02ded5a579766d50"},
+    {"path": "CLAUDE.md", "sha": "346bdca97745f8c92bdf04ec2dcdd582ab7c1393"}
+  ]
+}
