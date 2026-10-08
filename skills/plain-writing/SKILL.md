@@ -32,6 +32,9 @@ The rules are in the "How to write" section that loads at the start of every ses
 | Write any number into the SOW. | "Any" when it means every | Write every number into the SOW. |
 | Tell the lead what you can actually give. | Filler, vague "what" | Tell the lead how much time you can give. |
 | The repository now holds a case generator, a drafter and graders. | Stiff opener, lists parts | Adds a case generator, a drafter and graders. |
+| He reads code carefully and thinks ahead. | Present tense for a past event | He read the code carefully and thought ahead. |
+| He could say what each cleanup cost. | Stand-in for the term of the field | He talked through the tradeoffs of each refactor. |
+| **He thought ahead.** He raised the next problem before we got to it. | Bold label the sentence restates | He raised the next problem before we got to it. |
 
 ## Before you call it done
 
