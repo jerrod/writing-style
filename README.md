@@ -28,4 +28,4 @@ cat CLAUDE.md >> ~/.claude/CLAUDE.md
 
 ## Checks
 
-`bin/check` checks the manifests, the hook and the skill frontmatter. It fails when a skill drops or rewords a line of [CLAUDE.md](CLAUDE.md). It also fails when the plugin's own prose uses a word the rules ban or a heading has a colon subtitle. CI runs it on every push and pull request.
+`bin/check` checks the manifests, the hook and the skill frontmatter. It fails when a skill drops or rewords a line of [CLAUDE.md](CLAUDE.md). It also fails when the plugin's own prose uses a word the rules ban or a heading or manifest description has a colon subtitle. CI runs it on every push and pull request.

@@ -82,7 +82,8 @@ def banned_words(rules):
 
 def prose_files():
     paths = [root / "CLAUDE.md", root / "README.md", root / "bin/check", root / "hooks/hooks.json"]
-    return paths + skill_files() + sorted((root / "changelog.d").glob("*.md"))
+    manifests = [root / ".claude-plugin/plugin.json", root / ".claude-plugin/marketplace.json"]
+    return paths + manifests + skill_files() + sorted((root / "changelog.d").glob("*.md"))
 
 
 def prose_lines(path, rules):
@@ -107,6 +108,8 @@ def check_own_prose(rules):
                 errors.append(f"{name}:{number}: the rules ban {match.group(0)!r}")
             if path.suffix == ".md" and re.match(r"#+ .*: ", line):
                 errors.append(f"{name}:{number}: colon subtitle in a heading")
+            if path.suffix == ".json" and re.search(r'"description": "[^"]*: ', line):
+                errors.append(f"{name}:{number}: colon subtitle in a description")
     return errors
 
 
