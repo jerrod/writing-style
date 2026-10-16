@@ -31,6 +31,7 @@ The rules are in the "How to write" section that loads at the start of every ses
 | The engineer answers the second and supplies evidence for the third. | Third person, stiff verb | You answer the second and bring evidence for the third. |
 | Write any number into the SOW. | "Any" when it means every | Write every number into the SOW. |
 | Tell the lead what you can actually give. | Filler, vague "what" | Tell the lead how much time you can give. |
+| Connect the tools you already use. | Filler "already" | Connect your tools. |
 | The repository now holds a case generator, a drafter and graders. | Stiff opener, lists parts | Adds a case generator, a drafter and graders. |
 | He reads code carefully and thinks ahead. | Present tense for a past event | He read the code carefully and thought ahead. |
 | He could say what each cleanup cost. | Stand-in for the term of the field | He talked through the tradeoffs of each refactor. |
