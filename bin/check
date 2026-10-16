@@ -10,14 +10,16 @@ root = Path(__file__).resolve().parent.parent
 
 def check_manifests():
     errors = []
+    parsed = {}
     for name in ["plugin.json", "marketplace.json"]:
         path = root / ".claude-plugin" / name
         try:
-            json.loads(path.read_text())
+            parsed[name] = json.loads(path.read_text())
         except (OSError, ValueError) as e:
             errors.append(f"{path.relative_to(root)}: {e}")
-    plugin = json.loads((root / ".claude-plugin/plugin.json").read_text())
-    market = json.loads((root / ".claude-plugin/marketplace.json").read_text())
+    if errors:
+        return errors
+    plugin, market = parsed["plugin.json"], parsed["marketplace.json"]
     if plugin["name"] not in [p["name"] for p in market["plugins"]]:
         errors.append("marketplace.json doesn't list the plugin")
     return errors
