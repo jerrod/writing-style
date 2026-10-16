@@ -1,0 +1,1 @@
+Every skill quotes the "How to write" rules word for word. The plain-writing examples match the rules they show. `bin/check` fails when a skill drops or rewords a rule. It also fails when the plugin's own prose uses a word the rules ban.
