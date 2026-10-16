@@ -6,7 +6,7 @@
     {
       "name": "writing-style",
       "source": "./",
-      "description": "Makes Claude write plainly: spoken, active, no origin stories"
+      "description": "Claude writes the way a person talks."
     }
   ]
 }
