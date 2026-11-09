@@ -1,31 +1,29 @@
 # writing-style
 
-This plugin and prompt make Claude write the way a person talks. Install one, not both.
+This plugin makes Claude write the way a person talks.
 
-## The plugin
+## Install
 
 ```
 /plugin marketplace add jerrod/writing-style
 /plugin install writing-style@writing-style
 ```
 
-It gives you:
+## What you get
 
-- A hook that loads the rules from [CLAUDE.md](CLAUDE.md) at the start of every session.
-- The `plain-writing` skill holds the rules and before and after examples. Claude loads it when it writes prose.
-- `/writing-style:review <files>`: lists every line that breaks a rule, with the fix. Changes nothing.
-- `/writing-style:rewrite <files>`: fixes every line of every file and reports a ledger of what changed.
+- The `plain-writing` skill has the rules and a table of before and after examples. Claude loads it when it writes prose.
+- A hook prints the rules from the `plain-writing` skill at the start of every session.
+- `/writing-style:review <files>` lists every line that breaks a rule and gives the fix. It changes nothing.
+- `/writing-style:rewrite <files>` fixes every line of every file and reports what changed.
 
 Claude runs review and rewrite only when you type the command.
 
-## The prompt
-
-To get the rules without the plugin, add [CLAUDE.md](CLAUDE.md) to `~/.claude/CLAUDE.md`:
-
-```sh
-cat CLAUDE.md >> ~/.claude/CLAUDE.md
-```
-
 ## Checks
 
-`bin/check` checks the manifests, the hook and the skill frontmatter. It fails when a skill drops or rewords a line of [CLAUDE.md](CLAUDE.md). It also fails when the plugin's own prose uses a word the rules ban or a heading or manifest description has a colon subtitle. CI runs it on every push and pull request.
+CI runs `bin/check` on every push and pull request. `bin/check` fails when:
+
+- A manifest doesn't parse, or a skill has no name or description.
+- The hook prints anything but the rules.
+- A file other than the `plain-writing` skill copies a rule.
+- The plugin's own prose uses a word or phrase the rules ban.
+- A heading or a manifest description has a colon subtitle.

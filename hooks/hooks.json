@@ -3,7 +3,7 @@
     "SessionStart": [
       {
         "hooks": [
-          { "type": "command", "command": "cat \"${CLAUDE_PLUGIN_ROOT}/CLAUDE.md\"" }
+          { "type": "command", "command": "awk '/^## /{on = ($0 == \"## How to write\")} on' \"${CLAUDE_PLUGIN_ROOT}/skills/plain-writing/SKILL.md\"" }
         ]
       }
     ]
