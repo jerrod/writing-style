@@ -11,7 +11,6 @@
   ],
   "sources": [
     {"path": ".github/workflows/ci.yml", "sha": "cbe55504897cd4dc9cf8c9e52012d20a8ee08c55"},
-    {"path": "bin/check", "sha": "9559967a46902286e28f8ff812ea7268d4af686e"},
-    {"path": "CLAUDE.md", "sha": "a5384e03f73680125318badaf6270558041726c5"}
+    {"path": "bin/check", "sha": "3ea7818a0acc415b86109fa3e9e0dcdc96879815"}
   ]
 }

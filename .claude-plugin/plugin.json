@@ -1,6 +1,6 @@
 {
   "name": "writing-style",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Claude writes the way a person talks.",
   "author": { "name": "Jerrod Blavos" },
   "repository": "https://github.com/jerrod/writing-style"

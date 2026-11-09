@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Check the plugin's manifests, hook, skills and prose."""
 import json
+import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 root = Path(__file__).resolve().parent.parent
+RULES_FILE = root / "skills/plain-writing/SKILL.md"
+RULES_HEADING = "## How to write"
 
 
 def check_manifests():
@@ -25,12 +29,16 @@ def check_manifests():
     return errors
 
 
-def check_hook():
+def check_hook(rules):
     hooks = json.loads((root / "hooks/hooks.json").read_text())
     command = hooks["hooks"]["SessionStart"][0]["hooks"][0]["command"]
     target = re.search(r"\$\{CLAUDE_PLUGIN_ROOT\}/([^\"]+)", command).group(1)
     if not (root / target).is_file():
         return [f"the SessionStart hook reads a missing file: {target}"]
+    env = {**os.environ, "CLAUDE_PLUGIN_ROOT": str(root)}
+    printed = subprocess.run(command, shell=True, env=env, capture_output=True, text=True).stdout
+    if [line for line in printed.splitlines() if line.strip()] != [RULES_HEADING] + rules:
+        return ["the SessionStart hook doesn't print the rules and only the rules"]
     return []
 
 
@@ -55,17 +63,23 @@ def check_frontmatter():
 
 
 def rule_lines():
-    body = (root / "CLAUDE.md").read_text().split("\n", 1)[1]
-    return [line for line in body.splitlines() if line.strip()]
+    sections = RULES_FILE.read_text().split("\n## ")
+    body = next(s for s in sections if s.startswith(RULES_HEADING[3:] + "\n"))
+    return [line for line in body.splitlines()[1:] if line.strip()]
 
 
-def check_skills_quote_rules(rules):
+def check_one_copy_of_the_rules(rules):
     errors = []
-    for path in skill_files():
+    for path in prose_files():
+        if path == RULES_FILE:
+            continue
         lines = set(path.read_text().splitlines())
         for rule in rules:
-            if rule not in lines:
-                errors.append(f"{path.relative_to(root)}: missing or reworded rule: {rule[:60]}")
+            if rule in lines:
+                errors.append(f"{path.relative_to(root)}: copies a rule: {rule[:60]}")
+    for skill in ["review", "rewrite"]:
+        if "`plain-writing` skill" not in (root / "skills" / skill / "SKILL.md").read_text():
+            errors.append(f"{skill}: doesn't load the plain-writing skill")
     return errors
 
 
@@ -73,15 +87,17 @@ def banned_words(rules):
     text = "\n".join(rules)
     written_only = re.search(r'written-only words like (.*?), and "names"', text)
     filler = re.search(r"filler like (.*?) unless", text)
-    if not written_only or not filler:
+    pointers = re.search(r"Don't describe the document or point around it\. Delete (.*?)\.", text)
+    if not written_only or not filler or not pointers:
         return None
     filler_words = re.findall(r'"([^"]+)"', filler.group(1))
     words_before_the_exception = filler_words[:-1]
-    return written_only.group(1).split(", ") + words_before_the_exception
+    pointer_words = re.findall(r'"([^"]+)"', pointers.group(1))
+    return written_only.group(1).split(", ") + words_before_the_exception + pointer_words
 
 
 def prose_files():
-    paths = [root / "CLAUDE.md", root / "README.md", root / "bin/check", root / "hooks/hooks.json"]
+    paths = [root / "README.md", root / "bin/check", root / "hooks/hooks.json"]
     manifests = [root / ".claude-plugin/plugin.json", root / ".claude-plugin/marketplace.json"]
     return paths + manifests + skill_files() + sorted((root / "changelog.d").glob("*.md"))
 
@@ -98,7 +114,7 @@ def prose_lines(path, rules):
 def check_own_prose(rules):
     words = banned_words(rules)
     if words is None:
-        return ["CLAUDE.md: can't find the written-only and filler word lists"]
+        return ["plain-writing: can't find the banned word lists"]
     banned = re.compile(r"\b(" + "|".join(map(re.escape, words)) + r")\w*", re.I)
     errors = []
     for path in prose_files():
@@ -115,8 +131,8 @@ def check_own_prose(rules):
 
 def main():
     rules = rule_lines()
-    errors = check_manifests() + check_hook() + check_frontmatter()
-    errors += check_skills_quote_rules(rules) + check_own_prose(rules)
+    errors = check_manifests() + check_hook(rules) + check_frontmatter()
+    errors += check_one_copy_of_the_rules(rules) + check_own_prose(rules)
     for e in errors:
         print(e)
     print("ok" if not errors else f"{len(errors)} problems")
